@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DILIP KANCERLA | Full Stack Developer</title>
+    <link rel="shortcut icon" href="images/about.jpg" type="image/x-icon">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+    <!-- Split Text Plugin for Text Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/SplitText.min.js"></script>
+    <!-- Three.js for Background Effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.150.1/three.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" />
+            </svg>
+        </div>
+        <div class="animated-logo">
+            <span class="letter" data-letter="K">K</span>
+            <span class="letter" data-letter="A">A</span>
+            <span class="letter" data-letter="N">N</span>
+            <span class="letter" data-letter="C">C</span>
+            <span class="letter" data-letter="H">H</span>
+            <span class="letter" data-letter="E">E</span>
+            <span class="letter" data-letter="R">R</span>
+            <span class="letter" data-letter="L">L</span>
+            <span class="letter" data-letter="A">A</span>
+            <span class="letter special-letter" data-letter="D">D</span>
+            <span class="letter special-letter" data-letter="I">I</span>
+            <span class="letter special-letter" data-letter="L">L</span>
+            <span class="letter special-letter" data-letter="I">I</span>
+            <span class="letter special-letter" data-letter="P">P</span>
+        </div>
+        <div class="loading-text">Loading<span>.</span><span>.</span><span>.</span></div>
+    </div>
+
+    <!-- Failsafe for loading screen -->
+    <script>
+        // Ensure the loading screen gets hidden even if other scripts fail
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var loadingScreen = document.querySelector('.loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('loaded');
+                    document.body.style.overflow = 'visible';
+                    console.log('Loading screen hidden by HTML failsafe');
+                }
+            }, 2000); // Reduced from 6000ms to 2000ms
+            
+            // Also try to hide it immediately
+            var loadingScreen = document.querySelector('.loading-screen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('loaded');
+                document.body.style.overflow = 'visible';
+            }
+            
+            // Add another failsafe that runs after window load
+            window.addEventListener('load', function() {
+                var loadingScreen = document.querySelector('.loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.classList.add('loaded');
+                    document.body.style.overflow = 'visible';
+                    console.log('Loading screen hidden by window load event');
+                }
+            });
+        });
+    </script>
+
+    <!-- Cursor -->
+    <div class="custom-cursor"></div>
+    <!-- Removed cursor follower as we're creating it dynamically in JS -->
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home" class="logo-3d">
+                    <span class="logo-text">KD</span>
+                    <div class="logo-shadow"></div>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#work" class="mobile-nav-link">Work</a>
+            <a href="#skills" class="mobile-nav-link">Skills</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+        <div class="mobile-nav-footer">
+            <div class="mobile-social-links">
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="particles-container" id="particles-container"></div>
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-md-12">
+                        <div class="hero-content">
+                            <div class="hero-text text-center">
+                                <h1 class="animate-text">Hello, I'm <span class="highlight">DILIP KANCERLA</span></h1>
+                                <h2 class="animate-text">I'm a <span class="typing-text"></span></h2>
+                                <p class="animate-text">I build exceptional and accessible digital experiences for the web.</p>
+                                <div class="hero-buttons">
+                                    <a href="#work" class="primary-btn">View My Work</a>
+                                    <a href="#contact" class="secondary-btn">Get In Touch</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="scroll-text">Scroll Down</div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-title-container">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="row mt-5">
+                    <!-- About Text Column -->
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="bento-item about-text">
+                            <h3>Who I Am</h3>
+                            <p>I'm a Computer Science Engineering student at Siddhartha Institute of Technology and Sciences with a passion for creating beautiful, functional, and user-friendly websites and applications.</p>
+                            <p>When I'm not coding, you can find me exploring new technologies, reading books, and continuously learning to enhance my skills in both frontend and backend development.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- About Image Column -->
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="bento-item about-image">
+                            <img src="images/about.jpg" alt="About Me" class="about-img" onerror="this.src='https://via.placeholder.com/350x250?text=About+Dilip'">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <!-- Experience Column -->
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="bento-item experience">
+                            <h3>Experience</h3>
+                            <div class="experience-item">
+                                <div class="experience-year">2023</div>
+                                <div class="experience-details">
+                                    <h4>Frontend Developer Intern</h4>
+                                    <p>OctaNet</p>
+                                    <p class="experience-description">Developed responsive web applications using HTML, CSS, and JavaScript. Collaborated with the design team to implement UI/UX improvements.</p>
+                                </div>
+                            </div>
+                            <div class="experience-item">
+                                <div class="experience-year">2023</div>
+                                <div class="experience-details">
+                                    <h4>Python Developer Intern</h4>
+                                    <p>Motion Cut</p>
+                                    <p class="experience-description">Built backend systems using Python and Django. Implemented database solutions and RESTful APIs for web applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Education Column -->
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="bento-item education">
+                            <h3>Education</h3>
+                            <div class="education-item">
+                                <div class="education-year">2023 - 2027</div>
+                                <div class="education-details">
+                                    <h4>B.Tech in Computer Science</h4>
+                                    <p>Siddhartha Institute of Technology and Sciences</p>
+                                    <p class="education-description">Focusing on software development, web technologies, and artificial intelligence. Participating in coding competitions and hackathons.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interests Column -->
+                    <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="bento-item interests">
+                            <h3>Interests</h3>
+                            <div class="interest-icons">
+                                <div class="interest-icon">
+                                    <i class="fas fa-code"></i>
+                                    <span>Coding</span>
+                                </div>
+                                <div class="interest-icon">
+                                    <i class="fas fa-book"></i>
+                                    <span>Reading</span>
+                                </div>
+                                <div class="interest-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <span>Web Dev</span>
+                                </div>
+                                <div class="interest-icon">
+                                    <i class="fas fa-music"></i>
+                                    <span>Music</span>
+                                </div>
+                                <div class="interest-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                    <span>Gaming</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="work-section">
+            <div class="section-title-container">
+                <h2 class="section-title">My Work</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="work-filters">
+                <button class="work-filter active" data-filter="all">All</button>
+                <button class="work-filter" data-filter="frontend">Frontend</button>
+                <button class="work-filter" data-filter="fullstack">Full Stack</button>
+                <button class="work-filter" data-filter="mobile">Mobile</button>
+            </div>
+            
+            <div class="bento-grid projects-bento">
+                <div class="bento-item project-item featured" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="images/projects/ecommerce.jpg" alt="E-Commerce Project" onerror="this.src='https://via.placeholder.com/600x400?text=E-Commerce+Project'">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-featured e-commerce platform with user authentication, product management, and payment integration. This project showcases my ability to build complex web applications with modern technologies.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bento-item project-item" data-category="frontend">
+                    <div class="project-image">
+                        <img src="images/projects/portfolio.jpg" alt="Portfolio Website" onerror="this.src='https://via.placeholder.com/400x300?text=Portfolio+Website'">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <h3>Portfolio Website</h3>
+                        <p>A modern portfolio website with smooth animations and responsive design.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bento-item project-item" data-category="mobile">
+                    <div class="project-image">
+                        <img src="images/projects/fitness.jpg" alt="Fitness App" onerror="this.src='https://via.placeholder.com/400x300?text=Fitness+App'">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                        </div>
+                        <h3>Fitness App</h3>
+                        <p>A mobile application for tracking fitness activities and progress.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bento-item project-item" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="images/projects/taskmanager.jpg" alt="Task Management System" onerror="this.src='https://via.placeholder.com/400x300?text=Task+Management'">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Vue.js</span>
+                            <span>Express</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                        <h3>Task Management System</h3>
+                        <p>A collaborative task management system with real-time updates.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-more-container">
+                <a href="#" class="view-more-btn">View More Projects <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="section-title-container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="skills-intro-text">
+                <p>I specialize in building modern web applications using various technologies.</p>
+            </div>
+            
+            <!-- Interactive Skills Grid -->
+            <div class="skills-container">
+                <div class="skill-icon-grid">
+                    <div class="skill-icon-wrapper" data-skill="html">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                            <span class="skill-name">HTML</span>
+                        </div>
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="css">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt"></i>
+                            <span class="skill-name">CSS</span>
+                        </div>
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="javascript">
+                        <div class="skill-icon">
+                            <i class="fab fa-js"></i>
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="python">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                            <span class="skill-name">Python</span>
+                        </div>
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="django">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                            <span class="skill-name">Django</span>
+                        </div>
+                        <div class="skill-level proficient">Proficient</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="git">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                            <span class="skill-name">Git</span>
+                        </div>
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="github">
+                        <div class="skill-icon">
+                            <i class="fab fa-github"></i>
+                            <span class="skill-name">GitHub</span>
+                        </div>
+                        <div class="skill-level expert">Expert</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="linux">
+                        <div class="skill-icon">
+                            <i class="fab fa-linux"></i>
+                            <span class="skill-name">Linux</span>
+                        </div>
+                        <div class="skill-level proficient">Proficient</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="react">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-level proficient">Proficient</div>
+                    </div>
+                    
+                    <div class="skill-icon-wrapper" data-skill="node">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                            <span class="skill-name">Node.js</span>
+                        </div>
+                        <div class="skill-level familiar">Familiar</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page-wide effect overlays -->
+            <div id="html-effect" class="page-effect"></div>
+            <div id="css-effect" class="page-effect"></div>
+            <div id="javascript-effect" class="page-effect"></div>
+            <div id="python-effect" class="page-effect"></div>
+            <div id="django-effect" class="page-effect"></div>
+            <div id="git-effect" class="page-effect"></div>
+            <div id="github-effect" class="page-effect"></div>
+            <div id="linux-effect" class="page-effect"></div>
+            <div id="react-effect" class="page-effect"></div>
+            <div id="node-effect" class="page-effect"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-title-container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="bento-grid contact-bento">
+                <!-- Main Contact Card -->
+                <div class="bento-item contact-main">
+                    <h3>Let's Connect</h3>
+                    <p>Have a project in mind or just want to say hello? I'm always open to discussing new opportunities and ideas.</p>
+                    
+                    <!-- Email Copy Button -->
+                    <button id="copy-email-btn" class="gradient-btn email-btn">
+                        <i class="fas fa-envelope"></i>
+                        <span>Copy My Email</span>
+                    </button>
+                    
+                    <!-- Hidden Email Field (not visible to users) -->
+                    <input type="hidden" id="email-display" value="kancherladilip630@gmail.com">
+                    
+                    <!-- Alert Notification (Hidden by default) -->
+                    <div id="copy-alert" class="copy-alert">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Email copied to clipboard!</span>
+                    </div>
+                </div>
+                
+                <!-- Social Links Card -->
+                <div class="bento-item social-card">
+                    <h3>Follow Me</h3>
+                    <div class="social-grid">
+                        <a href="#" class="social-item" data-platform="github">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="#" class="social-item" data-platform="linkedin">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="#" class="social-item" data-platform="twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="#" class="social-item" data-platform="instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Availability Card -->
+                <div class="bento-item availability-card">
+                    <h3>Availability</h3>
+                    <div class="availability-status">
+                        <span class="status-indicator available"></span>
+                        <span class="status-text">Available for work</span>
+                    </div>
+                    <p>I'm currently available for freelance work and full-time positions.</p>
+                    <a href="#" class="gradient-btn">
+                        <span>Hire Me</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Contact CTA Card -->
+                <div class="bento-item contact-cta">
+                    <h3>Ready to Start?</h3>
+                    <p>Let's create something amazing together!</p>
+                    <a href="mailto:kancherladilip630@gmail.com" class="gradient-btn">
+                        <span>Send Email</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </a>
+                </div>
+                
+                <!-- Resume Card -->
+                <div class="bento-item resume-card">
+                    <h3>My Resume</h3>
+                    <p>Download my resume to learn more about my experience and skills.</p>
+                    <a href="#" class="gradient-btn resume-btn">
+                        <i class="fas fa-file-download"></i>
+                        <span>Download CV</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-text">KD</span>
+                <div class="logo-shadow"></div>
+            </div>
+            <div class="footer-text">
+                <p>Designed & Built by DILIP KANCERLA</p>
+                <p>&copy; <span id="current-year">2024</span> All Rights Reserved</p>
+            </div>
+            <div class="footer-info">
+                <div class="footer-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Hyderabad, India</span>
+                </div>
+                <div class="footer-datetime">
+                    <i class="fas fa-clock"></i>
+                    <span id="footer-time">Loading time...</span>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">GitHub</a>
+                <a href="#" class="footer-link">LinkedIn</a>
+                <a href="#" class="footer-link">Twitter</a>
+                <a href="#" class="footer-link">Resume</a>
+            </div>
+        </div>
+        <div class="back-to-top">
+            <a href="#home"><i class="fas fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
